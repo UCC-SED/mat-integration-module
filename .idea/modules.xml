@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/integration.iml" filepath="$PROJECT_DIR$/integration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api/integration-api.iml" filepath="$PROJECT_DIR$/api/integration-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/omod/integration-omod.iml" filepath="$PROJECT_DIR$/omod/integration-omod.iml" />
+    </modules>
+  </component>
+</project>
