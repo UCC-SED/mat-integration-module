@@ -27,6 +27,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
     <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
@@ -109,6 +110,10 @@
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
     <state x="605" y="349" width="924" height="691" key="Maven.ArtifactSearchDialog/48.27.1872.1053@48.27.1872.1053" timestamp="1594153261143" />
+    <state x="473" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1594273652363">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state x="473" y="188" width="1022" height="737" key="SettingsEditor/48.27.1872.1053@48.27.1872.1053" timestamp="1594273652363" />
     <state x="605" y="257" width="748" height="599" key="new project wizard" timestamp="1594158660353">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
