@@ -7,6 +7,7 @@ package org.openmrs.module.integration.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.integration.api.util.TempFile;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,6 @@ import static java.nio.file.Files.createTempFile;
 public class IntegrationController {
 	
 	protected final Log log;
-	//private static final Log log = LogFactory.getLog(TempFile.class);
 	protected  Path baseDir = FileSystems.getDefault().getPath("/media/sf_mat_temp");
 	protected  String prefix = "MAT_";
 	protected  String suffix = ".tmp";
@@ -35,17 +35,9 @@ public class IntegrationController {
 	}
 	@RequestMapping(value = "test", method = RequestMethod.GET)
 	@ResponseBody
-	public void testing() {
-		try {
-			log.info((Object)"MAT:Temp file Init");
-			tmpFile = createTempFile(baseDir, prefix, suffix);
-			BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile.toFile()));
-			bw.write("This is the temporary file content");
-			bw.close();
-			log.info((Object)"MAT:Temp file Created");
-		} catch (IOException e) {
-		}
-		log.info((Object)"API worked: tested");
+	public String testing(@RequestParam("test") String test1 ) throws Exception{
+		TempFile.createTemp();
+		return "API worked: "+test1;
 	}
 
 	@RequestMapping(value = "test2", method = RequestMethod.GET)
@@ -58,7 +50,7 @@ public class IntegrationController {
 			bw.write("This is the temporary file content");
 			bw.close();
 			log.info((Object)"MAT:Temp file Created");
-			
+
 		} catch (IOException e) {
 		}
 		log.info((Object)"API worked: tested");

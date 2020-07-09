@@ -7,7 +7,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>MAT Integration Module</name>
-	<description>Module for Integration for MAT EMR and Methamesure</description>
+	<description>Module for Integration for MAT EMR and Methameasure</description>
 	
 	<developers>
 		<developer>
