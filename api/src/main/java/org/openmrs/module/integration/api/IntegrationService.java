@@ -8,11 +8,9 @@ package org.openmrs.module.integration.api;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public interface IntegrationService extends OpenmrsService {
-     
-	/*
-	 * Add service methods here
-	 * 
-	 */
+	List getUserRegistration(String id);
 }

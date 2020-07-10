@@ -5,8 +5,11 @@
  */
 package org.openmrs.module.integration.web.controller;
 
+import com.google.gson.Gson;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.integration.api.IntegrationService;
 import org.openmrs.module.integration.api.util.TempFile;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,7 @@ import java.nio.file.Path;
 @Controller
 @RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/integration")
 public class IntegrationController {
-	
+
 	protected final Log log;
 	protected  Path baseDir = FileSystems.getDefault().getPath("/media/sf_mat_temp");
 	protected  String prefix = "MAT_";
@@ -40,6 +43,11 @@ public class IntegrationController {
 		return "API worked: "+test1;
 	}
 
+	@RequestMapping(value = "patient", method = RequestMethod.GET)
+	@ResponseBody
+	public String getUserRegistration(@RequestParam("details") String Id ) throws Exception{
+		return new Gson().toJson(Context.getService(IntegrationService.class).getUserRegistration(Id));
 
+	}
 
 }

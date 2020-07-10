@@ -94,6 +94,10 @@
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
     <state x="717" y="311" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/48.27.1872.1053@48.27.1872.1053" timestamp="1594137605632" />
+    <state x="792" y="261" width="374" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1594365273647">
+      <screen x="48" y="27" width="1872" height="1053" />
+    </state>
+    <state x="792" y="261" width="374" height="592" key="#com.intellij.ide.util.MemberChooser/48.27.1872.1053@48.27.1872.1053" timestamp="1594365273647" />
     <state x="48" y="27" width="718" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1594133988105">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
@@ -106,10 +110,10 @@
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
     <state x="757" y="266" width="424" height="491" key="FileChooserDialogImpl/48.27.1872.1053@48.27.1872.1053" timestamp="1594130530914" />
-    <state x="605" y="349" width="924" height="691" key="Maven.ArtifactSearchDialog" timestamp="1594153261143">
+    <state x="605" y="349" width="924" height="691" key="Maven.ArtifactSearchDialog" timestamp="1594368628549">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
-    <state x="605" y="349" width="924" height="691" key="Maven.ArtifactSearchDialog/48.27.1872.1053@48.27.1872.1053" timestamp="1594153261143" />
+    <state x="605" y="349" width="924" height="691" key="Maven.ArtifactSearchDialog/48.27.1872.1053@48.27.1872.1053" timestamp="1594368628549" />
     <state x="473" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1594273652363">
       <screen x="48" y="27" width="1872" height="1053" />
     </state>
