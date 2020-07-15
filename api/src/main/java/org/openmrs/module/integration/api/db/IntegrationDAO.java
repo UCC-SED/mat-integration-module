@@ -10,4 +10,5 @@ import java.util.List;
 public interface IntegrationDAO {
 
     List getUserRegistration(String id);
+    List getUserPrescription(String id);
 }

@@ -35,15 +35,21 @@ public class HibernateDAO implements IntegrationDAO {
     @Override
     public List getUserRegistration(String id) {
         this.log.info((Object)("MAT testing logs "));
-        String sql ="SELECT  pi.identifier as 'Mat_id',pn.given_name,pn.middle_name,pn.family_name, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),p.birthdate)), '%Y')+0 as 'age',p.gender FROM person p inner join person_name pn on p.person_id=pn.person_id inner join patient_identifier pi on p.person_id=pi.patient_id where pi.identifier='"+id+"'";
+        String sql ="SELECT  pi.identifier as 'Mat_id',pn.given_name,pn.middle_name,pn.family_name, DATE_FORMAT(FROM_DAYS(DATEDIFF(now(),p.birthdate)), '%Y')+0 as 'age',p.gender FROM person p inner join person_name pn on p.person_id=pn.person_id inner join patient_identifier pi on p.person_id=pi.patient_id where pi.identifier='"+id+"';";
         DbSession session =this.sessionFactory.getCurrentSession();
         Query query = session.createSQLQuery(sql).setResultTransformer(Transformers.aliasToBean(Registration.class));
         List results = query.list();
         this.log.info((Object)("MAT sql: " + sql));
-        if (results.size()>1){
+        if (results!=null){
             return results;
         }else {
             return null;
         }
     }
+
+    @Override
+    public List getUserPrescription(String id) {
+        return null;
+    }
+
 }

@@ -23,12 +23,12 @@ public class TempFile {
     protected static String suffix = ".tmp";
     protected static Path tmpFile = null;
 
-    public  String createTemp() {
+    public  String createTemp(String Data) {
         try {
             log.info((Object)"MAT:Temp file Init");
             tmpFile = Files.createTempFile(baseDir, prefix, suffix);
             BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile.toFile()));
-            bw.write("This is the temporary file content");
+            bw.write(Data);
             bw.close();
             log.info((Object)"MAT:Temp file Created");
         } catch (IOException e) {

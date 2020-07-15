@@ -13,4 +13,5 @@ import java.util.List;
 @Transactional
 public interface IntegrationService extends OpenmrsService {
 	List getUserRegistration(String id);
+	List getUserPrescription(String id);
 }

@@ -23,4 +23,5 @@ public class IntegrationServiceImpl extends BaseOpenmrsService implements Integr
     public  List getUserRegistration(String id){
         return this.dao.getUserRegistration(id);
     }
+    public  List getUserPrescription(String id){return this.dao.getUserRegistration(id);}
 }

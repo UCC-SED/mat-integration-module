@@ -28,26 +28,28 @@ public class IntegrationController {
 
 	protected final Log log;
 	protected  Path baseDir = FileSystems.getDefault().getPath("/media/sf_mat_temp");
-	protected  String prefix = "MAT_";
-	protected  String suffix = ".tmp";
+	protected  String prefix = "MAT-";
+	protected  String suffix = ".meth";
 	protected  Path tmpFile = null;
 	@Autowired
 	private TempFile tempService;
 	public IntegrationController() {
 		this.log = LogFactory.getLog((Class)this.getClass());
 	}
-	@RequestMapping(value = "test", method = RequestMethod.GET)
-	@ResponseBody
-	public String testing(@RequestParam("test") String test1 ) throws Exception{
-		tempService.createTemp();
-		return "API worked: "+test1;
-	}
 
 	@RequestMapping(value = "patient", method = RequestMethod.GET)
 	@ResponseBody
 	public String getUserRegistration(@RequestParam("details") String Id ) throws Exception{
-		return new Gson().toJson(Context.getService(IntegrationService.class).getUserRegistration(Id));
+		IntegrationService service =Context.getService(IntegrationService.class);
+		return tempService.createTemp(new Gson().toJson(service.getUserRegistration(Id)));
 
 	}
 
+	@RequestMapping(value = "prescription", method = RequestMethod.GET)
+	@ResponseBody
+	public String getUserPrescription(@RequestParam("details") String Id ) throws Exception{
+		IntegrationService service =Context.getService(IntegrationService.class);
+		return tempService.createTemp(new Gson().toJson(service.getUserPrescription(Id)));
+
+	}
 }
