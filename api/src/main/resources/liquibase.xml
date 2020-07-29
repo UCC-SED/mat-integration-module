@@ -21,11 +21,11 @@
        <comment>
            Creating the Integration logs table
        </comment>
-       <createTable tableName="order_drugs_log_meth">
+       <createTable tableName="drug_log_meth">
            <column name="log_id" type="int" autoIncrement="true">
                <constraints primaryKey="true" nullable="false" />
            </column>
-           <column name="order_id" type="varchar(255)"/>
+           <column name="order_id" type="int"/>
            <column name="UUID" type="varchar(255)"/>
            <column name="date_created" type="datetime">
                <constraints nullable="false" />
@@ -35,6 +35,27 @@
            <constraints nullable="false" unique="true" />
             </column>
        </createTable>
-       <addForeignKeyConstraint constraintName="fk_ph_store_creator" baseTableName="ph_store" baseColumnNames="creator" referencedTableName="users" referencedColumnNames="user_id" />
+       <addForeignKeyConstraint constraintName="fk_drug_log_order_id" baseTableName="drug_log_meth" baseColumnNames="order_id" referencedTableName="orders" referencedColumnNames="order_id" />
+       <createIndex indexName="index_drug_log_meth_log_id"
+                    schemaName="openmrs"
+                    tableName="drug_log_meth">
+           <column name="log_id" type="int"/>
+       </createIndex>
+       <createIndex indexName="index_drug_log_meth_order_id"
+                    schemaName="openmrs"
+                    tableName="drug_log_meth">
+           <column name="order_id" type="int"/>
+       </createIndex>
+       <createIndex indexName="index_drug_log_meth_uuid"
+                    schemaName="openmrs"
+                    tableName="drug_log_meth"
+                    unique="true">
+           <column name="uuid" type="char"/>
+       </createIndex>
+       <createIndex indexName="index_drug_log_meth_date_created"
+                    schemaName="openmrs"
+                    tableName="drug_log_meth">
+           <column name="date_created" type="datetime"/>
+       </createIndex>
    </changeSet>
 </databaseChangeLog>
