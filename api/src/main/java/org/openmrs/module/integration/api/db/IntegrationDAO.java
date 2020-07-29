@@ -5,10 +5,9 @@
  */
 package org.openmrs.module.integration.api.db;
 
-import java.util.List;
-
 public interface IntegrationDAO {
 
-    List getUserRegistration(String id);
-    List getUserPrescription(String id);
+    String getUserPrescription(String OrderNumber, String actionStatus);
+    String addOrderLog(String orderNumber, String logType, String logMessage);
+    
 }

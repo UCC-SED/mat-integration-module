@@ -17,12 +17,14 @@ import java.nio.file.Path;
 
 @Component
 public class TempFile {
-    private static final Log log = LogFactory.getLog(TempFile.class);
+    private  Log log ;
     protected static Path baseDir = FileSystems.getDefault().getPath("/media/sf_mat_temp");
     protected static String prefix = "MAT";
-    protected static String suffix = ".tmp";
+    protected static String suffix = ".meth";
     protected static Path tmpFile = null;
-
+    public TempFile() {
+        this.log = LogFactory.getLog((Class)this.getClass());
+    }
     public  String createTemp(String Data) {
         try {
             log.info((Object)"MAT:Temp file Init");

@@ -6,7 +6,6 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.integration.api.IntegrationService;
 import org.openmrs.module.integration.api.db.IntegrationDAO;
-import java.util.List;
 
 
 public class IntegrationServiceImpl extends BaseOpenmrsService implements IntegrationService {
@@ -20,8 +19,6 @@ public class IntegrationServiceImpl extends BaseOpenmrsService implements Integr
     public IntegrationDAO getDao() {
 	    return dao;
     }
-    public  List getUserRegistration(String id){
-        return this.dao.getUserRegistration(id);
-    }
-    public  List getUserPrescription(String id){return this.dao.getUserRegistration(id);}
+    public String getUserPrescription(String OrderNumber,String actionStatus){return this.dao.getUserPrescription(OrderNumber,actionStatus);}
+    public String addOrderLog(String orderNumber, String logType, String logMessage){return this.dao.addOrderLog(orderNumber,logType,logMessage);}
 }

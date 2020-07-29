@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <!--
+    	See http://wiki.openmrs.org/display/docs/Module+liquibase+File for
+    	documentation on this file.
+
+        See http://www.liquibase.org/manual/home#available_database_refactorings
+        for a list of supported elements and attributes
+    -->
+
+
+   <changeSet id="ucc-intergration-module" author="George Yusto">
+       <preConditions onFail="MARK_RAN">
+           <not><tableExists tableName="order_drugs_log_meth"/></not>
+       </preConditions>
+       <comment>
+           Creating the Integration logs table
+       </comment>
+       <createTable tableName="order_drugs_log_meth">
+           <column name="log_id" type="int" autoIncrement="true">
+               <constraints primaryKey="true" nullable="false" />
+           </column>
+           <column name="order_id" type="varchar(255)"/>
+           <column name="UUID" type="varchar(255)"/>
+           <column name="date_created" type="datetime">
+               <constraints nullable="false" />
+           </column>
+           <column name="log_message"></column>
+           <column name="uuid" type="char(58)">
+           <constraints nullable="false" unique="true" />
+            </column>
+       </createTable>
+       <addForeignKeyConstraint constraintName="fk_ph_store_creator" baseTableName="ph_store" baseColumnNames="creator" referencedTableName="users" referencedColumnNames="user_id" />
+   </changeSet>
+</databaseChangeLog>
