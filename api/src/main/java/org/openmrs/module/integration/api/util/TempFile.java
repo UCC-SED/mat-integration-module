@@ -26,15 +26,19 @@ public class TempFile {
         this.log = LogFactory.getLog((Class)this.getClass());
     }
     public  String createTemp(String Data) {
-        try {
-            log.info((Object)"MAT:Temp file Init");
-            tmpFile = Files.createTempFile(baseDir, prefix, suffix);
-            BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile.toFile()));
-            bw.write(Data);
-            bw.close();
-            log.info((Object)"MAT:Temp file Created");
-        } catch (IOException e) {
+        if (Data.equals("No data")) {
+        return "Failed to created file : ";
+        } else {
+            try {
+                log.info((Object) "MAT:Temp file Init");
+                tmpFile = Files.createTempFile(baseDir, prefix, suffix);
+                BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile.toFile()));
+                bw.write(Data);
+                bw.close();
+                log.info((Object) "MAT:Temp file Created");
+            } catch (IOException e) {
+            }
+            return "success";
         }
-   return "success";
     }
 }

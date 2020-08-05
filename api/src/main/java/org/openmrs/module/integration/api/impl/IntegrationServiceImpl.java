@@ -20,5 +20,4 @@ public class IntegrationServiceImpl extends BaseOpenmrsService implements Integr
 	    return dao;
     }
     public String getUserPrescription(String OrderNumber,String actionStatus){return this.dao.getUserPrescription(OrderNumber,actionStatus);}
-    public String addOrderLog(String orderNumber, String logType, String logMessage){return this.dao.addOrderLog(orderNumber,logType,logMessage);}
 }

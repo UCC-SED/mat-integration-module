@@ -5,6 +5,7 @@ import java.util.Date;
 public class Prescription {
     /**
      * Missing Indicator:Doctor's Licence
+     * Replaced with Doctor's ID
      */
 
     private int order_id;// order_id:(Prescription Identifier, Prescription, Prescription Authorization)
@@ -13,6 +14,7 @@ public class Prescription {
     private String identifier; //identifier: (unique ID)
     private String PatientLastname;
     private String PatientFirstname;
+    private String PatientSecondname;
     private Date birthdate;
     private String PatientAddress;//city_village + county_district :(Patient Address)
     private String PatientCity;//state_province
@@ -20,6 +22,7 @@ public class Prescription {
     private int Doctorid;
     private String DoctorLastname;
     private String DoctorFirstname;
+    private String DoctorSecondname;
     private  String order_action;
 
     public int getOrder_id() {
@@ -70,8 +73,15 @@ public class Prescription {
         PatientFirstname = patientFirstname;
     }
 
-    public Date getBirthdate() {
+    public String getPatientSecondname() {
+        return PatientSecondname;
+    }
 
+    public void setPatientSecondname(String patientSecondname) {
+        PatientSecondname = patientSecondname;
+    }
+
+    public Date getBirthdate() {
         return birthdate;
     }
 
@@ -125,6 +135,14 @@ public class Prescription {
 
     public void setDoctorFirstname(String doctorFirstname) {
         DoctorFirstname = doctorFirstname;
+    }
+
+    public String getDoctorSecondname() {
+        return DoctorSecondname;
+    }
+
+    public void setDoctorSecondname(String doctorSecondname) {
+        DoctorSecondname = doctorSecondname;
     }
 
     public String getOrder_action() {

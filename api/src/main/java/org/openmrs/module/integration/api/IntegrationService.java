@@ -11,5 +11,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface IntegrationService extends OpenmrsService {
 	String getUserPrescription(String OrderNumber, String actionStatus);
-	String addOrderLog(String orderNumber, String logType, String logMessage);
 }

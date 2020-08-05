@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-
     <!--
     	See http://wiki.openmrs.org/display/docs/Module+liquibase+File for
     	documentation on this file.
@@ -13,10 +11,9 @@
         for a list of supported elements and attributes
     -->
 
-
-   <changeSet id="ucc-intergration-module" author="George Yusto">
+   <changeSet id="intergration_log-001" author="George Yusto">
        <preConditions onFail="MARK_RAN">
-           <not><tableExists tableName="order_drugs_log_meth"/></not>
+           <not><tableExists tableName="drug_log_meth"/></not>
        </preConditions>
        <comment>
            Creating the Integration logs table
@@ -26,12 +23,11 @@
                <constraints primaryKey="true" nullable="false" />
            </column>
            <column name="order_id" type="int"/>
-           <column name="UUID" type="varchar(255)"/>
            <column name="date_created" type="datetime">
                <constraints nullable="false" />
            </column>
-           <column name="log_message"></column>
-           <column name="uuid" type="char(58)">
+           <column name="log_message" type="varchar(255)"></column>
+           <column name="uuid" type="char(40)">
            <constraints nullable="false" unique="true" />
             </column>
        </createTable>
@@ -56,6 +52,11 @@
                     schemaName="openmrs"
                     tableName="drug_log_meth">
            <column name="date_created" type="datetime"/>
+       </createIndex>
+       <createIndex indexName="index_orders_order_number"
+                    schemaName="openmrs"
+                    tableName="orders">
+           <column name="order_number" type="varchar"/>
        </createIndex>
    </changeSet>
 </databaseChangeLog>
