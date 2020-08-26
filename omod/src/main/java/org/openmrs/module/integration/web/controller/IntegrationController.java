@@ -35,6 +35,9 @@ public class IntegrationController {
 	public String getUserPrescription(@RequestParam("orderNumber") String OrderNumber,@RequestParam("action") String action ) throws Exception{
 		log.info("MAT server");
 		IntegrationService service =Context.getService(IntegrationService.class);
+
 		return tempService.createTemp(service.getUserPrescription(OrderNumber,action));
 	}
+
+
 }
