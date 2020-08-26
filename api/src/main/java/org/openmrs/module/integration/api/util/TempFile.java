@@ -17,7 +17,7 @@ import java.nio.file.Path;
 
 @Component
 public class TempFile {
-    private  Log log ;
+    protected final  Log log ;
     protected static Path baseDir = FileSystems.getDefault().getPath("/media/sf_mat_temp");
     protected static String prefix = "MAT";
     protected static String suffix = ".meth";
