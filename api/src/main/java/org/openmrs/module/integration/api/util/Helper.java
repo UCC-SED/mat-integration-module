@@ -1,5 +1,6 @@
 package org.openmrs.module.integration.api.util;
 
+import org.openmrs.api.context.Context;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -12,7 +13,13 @@ public class Helper {
         return new SimpleDateFormat("yyyyMMdd").format(date);
     }
 
-    int changeIdentifier (String ID){
-        return Integer.parseInt(ID.replaceAll("[\\D]", ""));
+  public  String changeIdentifier (String ID){
+        return ID.replaceFirst(".*?(\\d+).*", "$1");
+
     };
+
+  public int DrugConcept(){
+       String  concept= Context.getAdministrationService().getGlobalPropertyValue("MAT.meth.DIN","");
+       return Integer.valueOf(concept);
+   }
 }
