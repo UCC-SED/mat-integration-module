@@ -8,7 +8,8 @@ public class Prescription {
      * Replaced with Doctor's ID
      */
 
-    private int order_id;// order_id:(Prescription Identifier, Prescription, Prescription Authorization)
+    private int order_id;// order_id:(Prescription Identifier, Prescription)
+    private int order_oauth; //Prescription Authorization;
     private double Quantity;// Dose * Duration * Frequency: ( Prescription Quantity)
     private int concept_id; //concept_id: (Drug identifier)
     private String identifier; //identifier: (unique ID)
@@ -31,6 +32,14 @@ public class Prescription {
 
     public void setOrder_id(int order_id) {
         this.order_id = order_id;
+    }
+
+    public int getOrder_oauth() {
+        return order_oauth;
+    }
+
+    public void setOrder_oauth(int order_oauth) {
+        this.order_oauth = order_oauth;
     }
 
     public double getQuantity() {
