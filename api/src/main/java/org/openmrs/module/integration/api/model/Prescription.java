@@ -1,13 +1,11 @@
 package org.openmrs.module.integration.api.model;
 
 import java.util.Date;
-
 public class Prescription {
     /**
      * Missing Indicator:Doctor's Licence
      * Replaced with Doctor's ID
      */
-
     private int order_id;// order_id:(Prescription Identifier, Prescription)
     private int order_oauth; //Prescription Authorization;
     private double Quantity;// Dose * Duration * Frequency: ( Prescription Quantity)
@@ -16,6 +14,7 @@ public class Prescription {
     private String PatientLastname;
     private String PatientFirstname;
     private String PatientSecondname;
+    private int duration;
     private Date birthdate;
     private String PatientAddress;//city_village + county_district :(Patient Address)
     private String PatientCity;//state_province
@@ -88,6 +87,14 @@ public class Prescription {
 
     public void setPatientSecondname(String patientSecondname) {
         PatientSecondname = patientSecondname;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int d) {
+       duration= d;
     }
 
     public Date getBirthdate() {

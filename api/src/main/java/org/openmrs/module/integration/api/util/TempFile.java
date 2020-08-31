@@ -8,6 +8,7 @@ package org.openmrs.module.integration.api.util;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,16 +26,19 @@ public class TempFile {
     public TempFile() {
         this.log = LogFactory.getLog((Class)this.getClass());
     }
-    public  String createTemp(String Data) {
+    public  String createTemp(String Data,int Duration) {
         if (Data.equals("No data")) {
         return "Failed to created file : ";
         } else {
             try {
+                log.info((Object) "MAT Duration: "+String.valueOf(Duration));
                 log.info((Object) "MAT:Temp file Init");
-                tmpFile = Files.createTempFile(baseDir, prefix, suffix);
-                BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile.toFile()));
-                bw.write(Data);
-                bw.close();
+                for(int i = 1; i <=Duration;i++) {
+                    tmpFile = Files.createTempFile(baseDir, prefix, suffix);
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile.toFile()));
+                    bw.write(Data);
+                    bw.close();
+                }
                 log.info((Object) "MAT:Temp file Created");
             } catch (IOException e) {
             }

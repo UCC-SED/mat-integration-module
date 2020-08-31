@@ -9,9 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.integration.api.IntegrationService;
-import org.openmrs.module.integration.api.util.TempFile;
 import org.openmrs.module.webservices.rest.web.RestConstants;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,8 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IntegrationController {
 
 	protected final Log log;
-	@Autowired
-	private TempFile tempService;
 	public IntegrationController() {
 		this.log = LogFactory.getLog((Class)this.getClass());
 	}
@@ -36,7 +32,7 @@ public class IntegrationController {
 		log.info("MAT server");
 		IntegrationService service =Context.getService(IntegrationService.class);
 
-		return tempService.createTemp(service.getUserPrescription(OrderNumber,action));
+		return service.getUserPrescription(OrderNumber,action);
 	}
 
 
