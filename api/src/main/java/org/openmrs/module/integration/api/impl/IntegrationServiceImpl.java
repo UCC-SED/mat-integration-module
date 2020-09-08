@@ -7,6 +7,8 @@ import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.integration.api.IntegrationService;
 import org.openmrs.module.integration.api.db.IntegrationDAO;
 
+import java.text.ParseException;
+
 
 public class IntegrationServiceImpl extends BaseOpenmrsService implements IntegrationService {
 	
@@ -19,5 +21,5 @@ public class IntegrationServiceImpl extends BaseOpenmrsService implements Integr
     public IntegrationDAO getDao() {
 	    return dao;
     }
-    public String getUserPrescription(String OrderNumber,String actionStatus){return this.dao.getUserPrescription(OrderNumber,actionStatus);}
+    public String getUserPrescription(String OrderNumber,String actionStatus) throws ParseException {return this.dao.getUserPrescription(OrderNumber,actionStatus);}
 }

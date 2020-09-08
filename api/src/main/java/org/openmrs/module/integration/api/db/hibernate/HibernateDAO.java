@@ -18,6 +18,7 @@ import org.openmrs.module.integration.api.util.Helper;
 import org.openmrs.module.integration.api.util.TempFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.ParseException;
 import java.util.List;
 
 import static org.openmrs.module.integration.api.util.Constant.*;
@@ -44,7 +45,7 @@ public class HibernateDAO implements IntegrationDAO {
     }
 
     @Override
-    public String getUserPrescription(String orderNumber,String actionStatus) {
+    public String getUserPrescription(String orderNumber,String actionStatus) throws ParseException {
         this.log.info((Object)("MAT testing logs"));
         String sql = null;
         String methStatus=null;
@@ -74,12 +75,21 @@ public class HibernateDAO implements IntegrationDAO {
                  */
                 if(getPrescription.getConcept_id()==helper.DrugConcept()) {
 
-                    if (methStatus == "COM") {
-                        dataResult = String.valueOf(getPrescription.getOrder_id()) + ',' + String.valueOf(getPrescription.getOrder_id()) + ',' + String.valueOf(getPrescription.getOrder_id()) + ',' + getPrescription.getQuantity() + ',' + helper.changeIdentifier(getPrescription.getIdentifier()) + ',' + getPrescription.getPatientLastname() + ',' + getPrescription.getPatientFirstname() + ' ' + getPrescription.getPatientSecondname() + ',' + getPrescription.getPatientAddress() + ',' + getPrescription.getPatientCity() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorLastname() + ',' + getPrescription.getDoctorFirstname() + ' ' + getPrescription.getDoctorSecondname() + ',' + helper.chargeDateFormat(getPrescription.getScheduled_date()) + ',' + 1 + ',' + helper.chargeDateFormat(getPrescription.getBirthdate()) + ',' + getPrescription.getConcept_id() + ',' + "MAT" + ',' + methStatus + ",,,,";
-
-                    } else {
-                        dataResult = String.valueOf(getPrescription.getOrder_id()) + ',' + String.valueOf(getPrescription.getOrder_id()) + ',' + String.valueOf(getPrescription.getOrder_oauth()) + ',' + getPrescription.getQuantity() + ',' + helper.changeIdentifier(getPrescription.getIdentifier())+ ',' + getPrescription.getPatientLastname() + ',' + getPrescription.getPatientFirstname() + ' ' + getPrescription.getPatientSecondname() + ',' + getPrescription.getPatientAddress() + ',' + getPrescription.getPatientCity() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorLastname() + ',' + getPrescription.getDoctorFirstname() + ' ' + getPrescription.getDoctorSecondname() + ',' + helper.chargeDateFormat(getPrescription.getScheduled_date()) + ',' + 1 + ',' + helper.chargeDateFormat(getPrescription.getBirthdate()) + ',' + getPrescription.getConcept_id() + ',' + "MAT" + ',' + methStatus + ",,,,";
-                    }
+                    for(int i = 1; i <=getPrescription.getDuration();i++) {
+                        if(methStatus == "COM") {
+                           String dataResult = String.valueOf(getPrescription.getOrder_id()) + ',' + String.valueOf(getPrescription.getOrder_id()+".0"+i) + ',' + String.valueOf(getPrescription.getOrder_id()) + ',' + getPrescription.getQuantity() + ',' + helper.changeIdentifier(getPrescription.getIdentifier()) + ',' + getPrescription.getPatientLastname() + ',' + getPrescription.getPatientFirstname() + ' ' + getPrescription.getPatientSecondname() + ',' + getPrescription.getPatientAddress() + ',' + getPrescription.getPatientCity() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorLastname() + ',' + getPrescription.getDoctorFirstname() + ' ' + getPrescription.getDoctorSecondname() + ',' + helper.prescriptionDate(getPrescription.getScheduled_date(),i) + ',' + 1 + ',' + helper.chargeDateFormat(getPrescription.getBirthdate()) + ',' + getPrescription.getConcept_id() + ',' + "MAT" + ',' + methStatus + ",,,,";
+                           /*
+                           Create files
+                            */
+                            tempService.createTemp(dataResult);
+                        } else {
+                            String dataResult = String.valueOf(getPrescription.getOrder_id()) + ',' + String.valueOf(getPrescription.getOrder_id()+".0"+i) + ',' + String.valueOf(getPrescription.getOrder_oauth()) + ',' + getPrescription.getQuantity() + ',' + helper.changeIdentifier(getPrescription.getIdentifier()) + ',' + getPrescription.getPatientLastname() + ',' + getPrescription.getPatientFirstname() + ' ' + getPrescription.getPatientSecondname() + ',' + getPrescription.getPatientAddress() + ',' + getPrescription.getPatientCity() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorid() + ',' + getPrescription.getDoctorLastname() + ',' + getPrescription.getDoctorFirstname() + ' ' + getPrescription.getDoctorSecondname() + ',' + helper.prescriptionDate(getPrescription.getScheduled_date(),i) + ',' + 1 + ',' + helper.chargeDateFormat(getPrescription.getBirthdate()) + ',' + getPrescription.getConcept_id() + ',' + "MAT" + ',' + methStatus + ",,,,";
+                           /*
+                           Create Files
+                            */
+                            tempService.createTemp(dataResult);
+                        }
+                }
 
                     addOrderLog(getPrescription.getOrder_id(), "File created successfully");
                 }else{
@@ -88,10 +98,7 @@ public class HibernateDAO implements IntegrationDAO {
                      */
                      dataResult="No data";
                 }
-                   /*
-                     Create Files
-                     */
-                   tempService.createTemp(dataResult,getPrescription.getDuration());
+
             }
             return  dataResult;
 
@@ -105,7 +112,7 @@ public class HibernateDAO implements IntegrationDAO {
         DbSession session =this.sessionFactory.getCurrentSession();
         Query query = session.createSQLQuery(sql).setResultTransformer(Transformers.aliasToBean(CheckOrder.class));
         List data=query.list();
-        this.log.info((Object)("MAT sql(Checking OrderNumber): " + sql));
+        this.log.info((Object)("MAT sql(Checking OrderNumber): " + "OKAY"));
         if (data!=null && data.size()>0){
             if (status.equals(order_status_cancelled)){
                 return getOrderID(orderNumber);
@@ -136,7 +143,7 @@ public class HibernateDAO implements IntegrationDAO {
         String sql ="insert into drug_log_meth (order_id,date_created,log_message,uuid)values("+order+",now(),'"+logMessage+"',uuid())";
         DbSession session =this.sessionFactory.getCurrentSession();
         Query query = session.createSQLQuery(sql);
-        this.log.info((Object)("MAT sql(Adding Order logs): " + sql));
+        this.log.info((Object)("MAT sql(Adding Order logs): " + "SUCCESS"));
         if (query.executeUpdate() == 1) {
             return true;
         }else{
